@@ -66,6 +66,7 @@
     <Compile Include="PostProcessing\ARInvoiceEntryExtension.cs" />
     <Compile Include="PostProcessing\ARInvoiceExtensions.cs" />
     <Compile Include="PostProcessing\InterCompanyProcess.cs" />
+    <Compile Include="PrimaryKey\PrimaryKeyAPI.cs" />
     <Compile Include="Properties\GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Duplication\ReusableBusinessObjects\ObjectsExtensions.cs" />
