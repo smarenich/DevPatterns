@@ -8,7 +8,7 @@ using PX.Objects.SO;
 using PX.Objects.AR;
 using PX.Objects.CR;
 
-namespace ReusableBusinessObjects
+namespace Patterns
 {
 	public class SalesOrderCommision : CommisionGraph<SOOrderEntry, SOOrder>
 	{

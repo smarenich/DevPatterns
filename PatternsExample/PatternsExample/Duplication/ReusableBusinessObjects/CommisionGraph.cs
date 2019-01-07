@@ -10,7 +10,7 @@ using PX.Objects.TX;
 using PX.Objects.AR;
 using PX.Objects.IN;
 
-namespace ReusableBusinessObjects
+namespace Patterns
 {
 	public class Document : PXMappedCacheExtension
 	{

@@ -7,10 +7,11 @@
     <ProjectGuid>{6C744C46-E7E9-416B-9760-C76B6BC8B7D6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ReusableBusinessObjects</RootNamespace>
-    <AssemblyName>ReusableBusinessObjects</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>Patterns</RootNamespace>
+    <AssemblyName>Patterns</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,6 +42,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,9 +52,59 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommisionGraph.cs" />
+    <Compile Include="Connected Services\APIExample\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Duplication\Attributes\SOOrderExt.cs" />
+    <Compile Include="Duplication\DataViews\EntityRestrictions.cs" />
+    <Compile Include="Duplication\DataViews\EntityRestrictionAutomation.cs" />
+    <Compile Include="Duplication\DataViews\SOOrderEntryExt.cs" />
+    <Compile Include="Duplication\ReusableBusinessObjects\CommisionGraph.cs" />
+    <Compile Include="Duplication\Attributes\VirtualFieldAttribute.cs" />
+    <Compile Include="PostProcessing\ARInvoiceEntryExtension.cs" />
+    <Compile Include="PostProcessing\ARInvoiceExtensions.cs" />
+    <Compile Include="PostProcessing\InterCompanyProcess.cs" />
+    <Compile Include="Properties\GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Objects.cs" />
+    <Compile Include="Duplication\ReusableBusinessObjects\ObjectsExtensions.cs" />
+    <Compile Include="VirtualData\VirtualDAC.cs" />
+    <Compile Include="VirtualData\VirtualDataGraph.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Connected Services\APIExample\18.wsdl" />
+    <None Include="Connected Services\APIExample\Patterns.APIExample.Entity.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\APIExample\Patterns.APIExample.File.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\APIExample\Patterns.APIExample.InvokeResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\APIExample\Patterns.APIExample.ProcessResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\APIExample\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\APIExample\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\APIExample\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\APIExample\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
