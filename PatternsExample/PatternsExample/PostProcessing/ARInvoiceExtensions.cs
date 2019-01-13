@@ -27,7 +27,7 @@ namespace Patterns
 		#region UsrCompletedProcess
 		[PXDBBool]
 		[PXDefault(false, PersistingCheck = PXPersistingCheck.Nothing)]
-		[PXUIField(DisplayName = "Inter-Company Completed", Enabled = false, IsReadOnly = true)]
+		[PXUIField(DisplayName = "Process Completed", Enabled = false, IsReadOnly = true)]
 		public virtual bool? UsrCompletedProcess { get; set; }
 		public abstract class usrCompletedProcess : IBqlField { }
 		#endregion

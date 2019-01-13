@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2cc676c3-245c-4e91-94ac-a10fed8f7898" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7bc8327f-2344-43c4-ae08-67f822a6b58c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,10 +19,10 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://sm/Summit/entity/Default/18.200.001?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://sm/Summit/(W(10))/entity/Default/18.200.001?wsdl&amp;company=Summit" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="18.wsdl" MetadataType="Wsdl" ID="94b20055-5b51-40c3-bbba-e4a9cb67b573" SourceId="1" SourceUrl="http://sm/Summit/entity/Default/18.200.001?wsdl" />
+    <MetadataFile FileName="18.wsdl" MetadataType="Wsdl" ID="74a0b3c1-14a8-4f51-b10b-f5bd6129f658" SourceId="1" SourceUrl="http://sm/Summit/(W(10))/entity/Default/18.200.001?wsdl&amp;company=Summit" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

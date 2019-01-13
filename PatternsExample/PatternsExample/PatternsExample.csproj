@@ -65,7 +65,7 @@
     <Compile Include="Duplication\Attributes\VirtualFieldAttribute.cs" />
     <Compile Include="PostProcessing\ARInvoiceEntryExtension.cs" />
     <Compile Include="PostProcessing\ARInvoiceExtensions.cs" />
-    <Compile Include="PostProcessing\InterCompanyProcess.cs" />
+    <Compile Include="PostProcessing\PostProcessing.cs" />
     <Compile Include="PrimaryKey\PrimaryKeyAPI.cs" />
     <Compile Include="Properties\GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

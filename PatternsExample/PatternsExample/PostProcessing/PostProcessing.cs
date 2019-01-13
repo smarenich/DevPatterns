@@ -45,7 +45,13 @@ namespace Patterns
 				try
 				{
 					ARRegister invoice = PXSelect<ARRegister,
-						Where<ARRegister.docType, Equal<Required<ARRegister.docType>>, And<ARRegister.refNbr, Equal<Required<ARRegister.refNbr>>>>>.Select(graph, rec.DocType, rec.RefNbr);					
+						Where<ARRegister.docType, Equal<Required<ARRegister.docType>>, And<ARRegister.refNbr, Equal<Required<ARRegister.refNbr>>>>>.Select(graph, rec.DocType, rec.RefNbr);
+
+					graph.Caches[typeof(ARRegister)].SetValue<ARInvoiceExt.usrCompletedProcess>(invoice, true);
+					graph.Caches[typeof(ARRegister)].Update(invoice);
+					graph.Caches[typeof(ARRegister)].PersistUpdated(invoice);
+
+					//graph.Actions.PressSave();
 
 					PXProcessing.SetProcessed();
 				}
