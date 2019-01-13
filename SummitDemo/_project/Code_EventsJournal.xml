@@ -1,0 +1,48 @@
+﻿<Graph ClassName="EventsJournal" Source="#CDATA" IsNew="True" FileType="ExistingGraph">
+    <CDATA name="Source"><![CDATA[using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Web;
+using System.Linq;
+using PX.Api;
+using PX.Data;
+using PX.Common;
+using PX.Objects.Common;
+using PX.Objects.CS;
+using PX.Objects.CM;
+using PX.Objects.CA;
+using PX.Objects.FA;
+using PX.Objects.GL.JournalEntryState;
+using PX.Objects.GL.JournalEntryState.PartiallyEditable;
+using PX.Objects.GL.Overrides.PostGraph;
+using PX.Objects.GL.Reclassification.UI;
+using PX.Objects.PM;
+using PX.Objects.TX;
+using PX.Objects;
+using PX.Objects.GL;
+using PX.Objects.AR;
+
+namespace PX.Objects.GL
+{  
+  public class JournalEntry_Extension:PXGraphExtension<JournalEntry>
+  {
+    protected void GLTran_TranDesc_FieldUpdated(PXCache cache, PXFieldUpdatedEventArgs e)
+    {
+      GLTran row = (GLTran)e.Row;
+
+      if (row != null && row.RefNbr != null && row.TranType != null)
+      {
+        ARInvoice invoice = PXSelect<ARInvoice,
+          Where<ARInvoice.docType, Equal<Required<ARInvoice.docType>>,
+            And<ARInvoice.refNbr, Equal<Required<ARInvoice.refNbr>>>>>.Select(Base, row.TranType, row.RefNbr);
+        if (invoice != null)
+        {
+          row.TranDesc = invoice.DocDesc + "Test";
+          //Base.Caches[typeof(Batch)].Update(batch);
+        }
+      }
+    }
+  }
+
+}]]></CDATA>
+</Graph>

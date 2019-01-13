@@ -1,0 +1,53 @@
+﻿<Graph ClassName="Formulas" Source="#CDATA" IsNew="True" FileType="NewFile">
+    <CDATA name="Source"><![CDATA[using System;
+using PX.Data;
+using PX.Objects.AR;
+using PX.Objects.AP;
+using PX.Objects.IN;
+using PX.Objects.GL;
+using PX.Objects.CR;
+using PX.Objects.EP;
+using PX.Objects.SO;
+using PX.Objects.Common;
+
+namespace SummitDemo
+{
+    public class Formulas
+    {
+        //Validate
+        [PXFormula(typeof(Validate<Batch.finPeriodID>))]
+        public virtual void Batch_Date_CacheAttached(PXCache sender) { } 
+          
+        //Default  
+        [PXFormula(typeof(Default<SOLine.inventoryID>))]
+        public virtual void SOLine_SubItemID_CacheAttached(PXCache sender) { }
+      
+        //Current
+        [PXFormula(typeof(Switch<
+            Case<Where<
+                    ARAdjust.adjgDocType, Equal<Current<ARPayment.docType>>,
+                    And<ARAdjust.adjgRefNbr, Equal<Current<ARPayment.refNbr>>>>,
+                EPActivity.classIcon>,
+            EPActivity.classIcon>))]
+        protected virtual void ARAdjust_ClassIcon_CacheAttached(PXCache sender) {}
+          
+        //Parent
+        [PXParent(typeof(Select<INRegister, 
+              Where<INRegister.docType, Equal<Current<INTran.docType>>,
+                And<INRegister.refNbr,Equal<Current<INTran.refNbr>>>>>))]
+        [PXFormula(typeof(Parent<INRegister.origModule>))]
+        public virtual void INTran_OrigModule_CacheAttached(PXCache sender) { }
+          
+        //IsTableEmpty
+        [PXFormula(typeof(Switch<
+              Case<Where<IsTableEmpty<APSetupApproval>, Equal<True>>, True>,
+              False>
+        ))]
+        public virtual void APRegister_DontApprove_CacheAttached(PXCache sender) { }
+          
+        //Selector
+        [PXFormula(typeof(Selector<APVendorPrice.inventoryID, InventoryItem.purchaseUnit>))]
+        public virtual void APVendorPrice_UOM_CacheAttached(PXCache sender) { }
+    }
+}]]></CDATA>
+</Graph>

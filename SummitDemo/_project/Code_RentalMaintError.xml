@@ -1,0 +1,18 @@
+﻿<Graph ClassName="RentalMaintError" Source="#CDATA" IsNew="True" FileType="NewGraph">
+    <CDATA name="Source"><![CDATA[using System;
+using PX.Data;
+
+namespace SummitDemo
+{
+  public class RentalMaintError : PXGraph<RentalMaintError, Tool>
+  {
+    public PXSelect<Tool> MasterView;
+    public PXSelect<Rental, Where<Rental.toolCD, Equal<Current<Tool.toolcd>>>> DetailsView;
+  
+    [PXRemoveBaseAttribute(typeof(PXDBStringAttribute))]
+    public void Rental_ToolCD_CacheAttached(PXCache sender)
+    {
+    }  
+  }
+}]]></CDATA>
+</Graph>

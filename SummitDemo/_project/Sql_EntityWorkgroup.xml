@@ -1,0 +1,12 @@
+﻿<Sql TableName="EntityWorkgroup" TableSchemaXml="#CDATA">
+    <CDATA name="TableSchemaXml"><![CDATA[<table name="EntityWorkgroup">
+  <col name="CompanyID" type="Int" default="Zero" />
+  <col name="RestrictionID" type="Int" identity="true" />
+  <col name="RefNoteID" type="UniqueIdentifier" nullable="true" />
+  <col name="WorkGroupID" type="Int" />
+  <index name="PK_EntityWorkgroup" clustered="true" primary="true" unique="true">
+    <col name="CompanyID" />
+    <col name="RestrictionID" />
+  </index>
+</table>]]></CDATA>
+</Sql>

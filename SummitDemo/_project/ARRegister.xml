@@ -1,0 +1,4 @@
+﻿<Table TableName="ARRegister">
+    <Column TableName="ARRegister" ColumnName="UsrRequiredProcess" ColumnType="bool" AllowNull="True" DecimalPrecision="0" DecimalLength="0" IsNewColumn="True" IsUnicode="True" />
+    <Column TableName="ARRegister" ColumnName="UsrCompletedProcess" ColumnType="bool" AllowNull="True" DecimalPrecision="0" DecimalLength="0" IsNewColumn="True" IsUnicode="True" />
+</Table>

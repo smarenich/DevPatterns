@@ -1,0 +1,15 @@
+﻿<Sql TableName="Rental" TableSchemaXml="#CDATA">
+    <CDATA name="TableSchemaXml"><![CDATA[<table name="Rental">
+  <col name="CompanyID" type="Int" default="Zero" />
+  <col name="RentalID" type="Int" identity="true" />
+  <col name="ToolCD" type="NVarChar(30)" />
+  <col name="CustomerID" type="Int" />
+  <col name="StartDate" type="DateTime" nullable="true" />
+  <col name="EndDate" type="DateTime" nullable="true" />
+  <col name="NoteID" type="UniqueIdentifier" nullable="true" />
+  <index name="Rental_PK" clustered="true" primary="true" unique="true">
+    <col name="CompanyID" />
+    <col name="RentalID" />
+  </index>
+</table>]]></CDATA>
+</Sql>

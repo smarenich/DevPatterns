@@ -1,0 +1,45 @@
+﻿<Graph ClassName="PXView" Source="#CDATA" IsNew="True" FileType="NewFile">
+    <CDATA name="Source"><![CDATA[using System;
+using System.Collections;
+using System.Collections.Generic;
+using PX.Data;
+using PX.Objects.AR;
+using PX.Objects.CT;
+using PX.Objects.CS;
+using PX.Objects.CR;
+
+namespace SummitDemo
+{
+  public class ContractMaint_Extension:PXGraphExtension<ContractMaint>
+  {
+    public PXSelectReadonly2<Contract,
+      InnerJoin<ContractBillingSchedule, On<ContractBillingSchedule.contractID, Equal<Contract.contractID>>,
+      InnerJoin<CSAnswers,
+        On<CSAnswers.refNoteID, Equal<Contract.noteID>>>>,
+      Where<Contract.baseType, Equal<Contract.ContractBaseType>,
+        And<Contract.status, NotEqual<Contract.status.canceled>, And<Contract.status, NotEqual<Contract.status.draft>, 
+        And<Contract.status, NotEqual<Contract.status.expired>,
+        And<Where<ContractBillingSchedule.accountID, Equal<Current<ContractBillingSchedule.accountID>>>>>>>>,
+      OrderBy<Asc<CSAttributeDetail.description, Asc<Contract.contractCD>>>> Renewals;
+
+    public IEnumerable renewals()
+    {
+      PXView select = new PXView(Base, true, Renewals.View.BqlSelect);
+    
+      Int32 totalrow = 0;
+      Int32 startrow = PXView.StartRow;
+      List<object> result = select.Select(PXView.Currents, PXView.Parameters, PXView.Searches, 
+        PXView.SortColumns, PXView.Descendings, PXView.Filters, ref startrow, PXView.MaximumRows, ref totalrow);
+      PXView.StartRow = 0;
+
+      foreach (PXResult<Contract, ContractBillingSchedule, CSAnswers> row in result)
+      {
+        Contract contract = (Contract)row;
+        ContractBillingSchedule schedule = (ContractBillingSchedule)row;
+      }
+
+      return result;
+    }
+  }
+}]]></CDATA>
+</Graph>

@@ -1,0 +1,14 @@
+﻿<Sql TableName="Tool" TableSchemaXml="#CDATA">
+    <CDATA name="TableSchemaXml"><![CDATA[<table name="Tool">
+  <col name="CompanyID" type="Int" default="Zero" />
+  <col name="ToolCD" type="NVarChar(30)" />
+  <col name="Description" type="NVarChar(50)" />
+  <col name="Cost" type="Decimal(19,2)" nullable="true" />
+  <col name="SerialNumber" type="NVarChar(50)" nullable="true" />
+  <col name="NoteID" type="UniqueIdentifier" nullable="true" />
+  <index name="Tool_PK" clustered="true" primary="true" unique="true">
+    <col name="CompanyID" />
+    <col name="ToolCD" />
+  </index>
+</table>]]></CDATA>
+</Sql>

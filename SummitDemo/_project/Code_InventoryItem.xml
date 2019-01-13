@@ -1,0 +1,37 @@
+﻿<Graph ClassName="InventoryItem" Source="#CDATA" IsNew="True" FileType="NewFile">
+    <CDATA name="Source"><![CDATA[using PX.Data;
+using PX.Objects.AP;
+using PX.Objects.CR;
+using PX.Objects.CS;
+using PX.Objects.DR;
+using PX.Objects.EP;
+using PX.Objects.GL;
+using PX.Objects.IN;
+using PX.Objects.TX;
+using PX.Objects;
+using PX.TM;
+using System.Collections.Generic;
+using System;
+
+namespace PX.Objects.IN
+{
+  public class InventoryItemExt : PXCacheExtension<PX.Objects.IN.InventoryItem>
+  {
+       #region UsrModuleNumber
+       [PXString(64)]
+       [PXUIField(DisplayName = "Module Number", Visibility = PXUIVisibility.SelectorVisible)]
+       public virtual string UsrModuleNumber { get; set; }
+       public abstract class usrModuleNumber : IBqlField { }
+       #endregion
+  }
+         
+  public class INTranExt : PXCacheExtension<PX.Objects.IN.INTran>
+  {
+       #region InventoryID 
+       [PXDefault()]
+       [StockItem(DisplayName="Inventory ID")]
+       public virtual Int32? InventoryID { get; set; }
+       #endregion
+  }           
+}]]></CDATA>
+</Graph>

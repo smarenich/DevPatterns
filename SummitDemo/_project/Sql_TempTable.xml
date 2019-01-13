@@ -1,0 +1,12 @@
+﻿<Sql TableName="TempTable" TableSchemaXml="#CDATA">
+    <CDATA name="TableSchemaXml"><![CDATA[<table name="TempTable">
+  <col name="CompanyID" type="Int" default="Zero" />
+  <col name="RecordID" type="Int" identity="true" />
+  <col name="Description" type="NVarChar(30)" />
+  <col name="NoteID" type="UniqueIdentifier" nullable="false" />
+  <index name="PK_TempTable" clustered="true" primary="true" unique="true">
+    <col name="CompanyID" />
+    <col name="RecordID" />
+  </index>
+</table>]]></CDATA>
+</Sql>

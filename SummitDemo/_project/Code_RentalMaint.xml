@@ -1,0 +1,13 @@
+﻿<Graph ClassName="RentalMaint" Source="#CDATA" IsNew="True" FileType="NewGraph">
+    <CDATA name="Source"><![CDATA[using System;
+using PX.Data;
+
+namespace SummitDemo
+{
+  public class RentalMaint : PXGraph<RentalMaint, Tool>
+  {
+    public PXSelect<Tool> MasterView;
+    public PXSelect<Rental, Where<Rental.toolCD, Equal<Current<Tool.toolcd>>>> DetailsView;
+  }
+}]]></CDATA>
+</Graph>

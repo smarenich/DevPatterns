@@ -1,0 +1,52 @@
+﻿<Graph ClassName="Tool" Source="#CDATA" IsNew="True" FileType="NewDac">
+    <CDATA name="Source"><![CDATA[using System;
+using PX.Data;
+
+namespace SummitDemo
+{
+  [Serializable]
+  public class Tool: IBqlTable
+  {
+    #region Toolcd
+    [PXDBString(30, IsKey = true, IsUnicode = true, InputMask = "")]
+    [PXUIField(DisplayName = "Tool CD")]   
+    [PXSelector(typeof(Search<Tool.toolcd>))]
+    [PXDefault]
+    public string Toolcd { get; set; }
+
+    public class toolcd : IBqlField{}
+
+    #endregion
+    #region Description
+    [PXDefault]
+    [PXDBString(50, IsUnicode = true, InputMask = "")]
+    [PXUIField(DisplayName = "Description")]
+    public string Description { get; set; }
+
+    public class description : IBqlField{}
+    #endregion
+
+    #region Cost
+    [PXDBDecimal()]
+    [PXUIField(DisplayName = "Cost")]
+    public Decimal? Cost { get; set; }
+
+    public class cost : IBqlField{}
+    #endregion
+
+    #region SerialNumber
+    [PXDBString(50, IsUnicode = true, InputMask = "")]
+    [PXUIField(DisplayName = "Serial Number")]
+    public string SerialNumber { get; set; }
+
+    public class serialNumber : IBqlField{}
+    #endregion
+
+    #region Noteid
+    [PXNote]
+    public Guid? Noteid { get; set; }
+    public class noteid : IBqlField{}
+    #endregion
+  }
+}]]></CDATA>
+</Graph>

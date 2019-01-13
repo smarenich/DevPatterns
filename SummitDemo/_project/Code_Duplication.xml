@@ -1,0 +1,52 @@
+﻿<Graph ClassName="Duplication" Source="#CDATA" IsNew="True" FileType="NewFile">
+    <CDATA name="Source"><![CDATA[using PX.Data;
+using PX.Objects.AR;
+using PX.Objects.CM;
+using PX.Objects.Common;
+using PX.Objects.CR;
+using PX.Objects.CS;
+using PX.Objects.GL;
+using PX.Objects;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System;
+
+namespace PX.Objects.AR
+{
+  [PXNonInstantiatedExtension]
+  public class AR_ARRegister_ExistingColumn : PXCacheExtension<PX.Objects.AR.ARRegister>
+  {
+      public class ar: Constant<string>
+      {
+        public ar() : base("AR") { ;}
+      }
+  
+      #region ARAccountID  
+      [PXMergeAttributes(Method = MergeMethod.Append)]
+      [PXRestrictor(typeof(Where<Account.accountClassID, Equal<ar>>), "Only AR Accounts are allowed.")]
+      public int? ARAccountID { get; set; }
+      #endregion
+    
+      #region NotificationSent    
+      [PXBool]
+      [PXUIEnabled(typeof(Where<ARRegister.released, NotEqual<True>>))]
+      [PXUIField(DisplayName = "Notification Sent", Visibility = PXUIVisibility.SelectorVisible)]
+      public virtual Boolean? NotificationSent { get; set; }
+      public abstract class notificationSent : IBqlField {}
+      #endregion
+        
+      #region EmployeeID
+      [PXRemoveBaseAttribute(typeof(PXDefaultAttribute))]
+      public virtual Guid? EmployeeID { get; set; }
+      public abstract class employeeID : IBqlField {}
+      #endregion
+  }
+  public class ARInvoiceEntryExt : PXGraphExtension<ARInvoiceEntry>
+  {
+    [PXCustomizeBaseAttribute(typeof(PXDefaultAttribute), "PersistingCheck", PXPersistingCheck.Nothing)]
+    protected virtual void ARInvoiceDiscountDetail_DiscountID_CacheAttached(PXCache sender) { }
+  }
+  
+}]]></CDATA>
+</Graph>
