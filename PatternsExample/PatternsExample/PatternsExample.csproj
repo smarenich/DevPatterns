@@ -57,6 +57,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Duplication\Attributes\ScalarCountAttribute.cs" />
     <Compile Include="Duplication\Attributes\SOOrderExt.cs" />
     <Compile Include="Duplication\DataViews\EntityRestrictions.cs" />
     <Compile Include="Duplication\DataViews\EntityRestrictionAutomation.cs" />

@@ -3,6 +3,7 @@ using PX.Data;
 using PX.Common;
 using PX.Objects.SO;
 using PX.Objects.AR;
+using PX.Objects.CR;
 using PX.TM;
 
 namespace Patterns
@@ -34,7 +35,7 @@ namespace Patterns
 		#region AcctReferenceNbr
 		[PXString(50, IsUnicode = true)]
 		[PXUIField(DisplayName = "Customer Ext ID", Visibility = PXUIVisibility.SelectorVisible)]
-		[VirtualCRMIDAttribute(typeof(SOOrder.customerID))]
+		[AttributeRefAttribute(typeof(SOOrder.customerID), typeof(BAccount.noteID), "EXTREFNBR")]
 		public virtual string AcctReferenceNbr { get; set; }
 		public abstract class acctReferenceNbr : IBqlField { }
 		#endregion

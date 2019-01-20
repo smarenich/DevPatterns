@@ -2,6 +2,7 @@
 using PX.Data;
 using PX.Common;
 using PX.Objects.CR;
+using PX.Objects.CS;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,11 +13,14 @@ namespace Patterns
 	#region VirtualFieldAttribute
 	public abstract class VirtualFieldAttribute : PXEventSubscriberAttribute, IPXFieldUpdatedSubscriber, IPXRowSelectingSubscriber, IPXRowSelectedSubscriber
 	{
+		public Boolean EvaluateOnRowSelected { get; set; }
 		protected Type _MasterField;
 
-		public VirtualFieldAttribute(Type field)
+		public VirtualFieldAttribute(Type masterField)
 		{
-			_MasterField = field;
+			if (masterField == null) throw new ArgumentException("masterField");
+
+			_MasterField = masterField;
 		}
 		public override void CacheAttached(PXCache sender)
 		{
@@ -58,7 +62,7 @@ namespace Patterns
 			Object row = e.Row;
 			Object refNbr = sender.GetValue(row, _FieldOrdinal);
 
-			if (refNbr == null)
+			if (refNbr == null && EvaluateOnRowSelected)
 			{
 				Object value = SelectValue(sender, row);
 
@@ -80,19 +84,36 @@ namespace Patterns
 			}
 		}
 	}
-	public class VirtualCRMIDAttribute : VirtualFieldAttribute
+	public class AttributeRefAttribute : VirtualFieldAttribute
 	{
-		public VirtualCRMIDAttribute(Type field)
-			: base(field)
+		protected String _AttrName;
+		protected Type _MasterNote;
+
+		public AttributeRefAttribute(Type masterField, Type masterNote, String attrName)
+			: base(masterField)
 		{
+			if (attrName == null) throw new ArgumentException("attrName");
+			if (masterNote == null) throw new ArgumentException("masterNote");
+
+			_MasterNote = masterNote;
+			_AttrName = attrName;
 		}
 
 		protected override object SelectValue(PXCache sender, object row)
 		{
-			BAccount customer = PXSelectorAttribute.Select(sender, row, _MasterField.Name) as BAccount;
-			if (customer != null)
+			Object master = PXSelectorAttribute.Select(sender, row, _MasterField.Name);
+			
+			if (master != null)
 			{
-				return customer.AcctReferenceNbr;
+				CSAnswers answer = (CSAnswers)PXSelect<CSAnswers,
+					Where<CSAnswers.attributeID, Equal<Required<CSAnswers.attributeID>>,
+						And<CSAnswers.refNoteID, Equal<Required<CSAnswers.refNoteID>>>>>
+					.Select(sender.Graph, _AttrName, PXNoteAttribute.GetNoteID(sender.Graph.Caches[BqlCommand.GetItemType(_MasterNote)], master, _MasterNote.Name));
+
+				if (answer != null)
+				{
+					return answer.Value;
+				}
 			}
 
 			return null;
